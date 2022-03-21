@@ -1,4 +1,4 @@
-import { CREATE_TODO, REMOVE_TODO } from './actions';
+import { CREATE_TODO, REMOVE_TODO, MARK_TODO } from './actions';
 
 export const todos = (state = [], action) => {
   const { type, payload } = action;
@@ -13,6 +13,10 @@ export const todos = (state = [], action) => {
       return state.concat(newTodo);
     }
     case REMOVE_TODO: {
+      const { text } = payload;
+      return state.filter(todo => todo.text !== text);
+    }
+    case MARK_TODO: {
       const { text } = payload;
       return state.filter(todo => todo.text !== text);
     }
